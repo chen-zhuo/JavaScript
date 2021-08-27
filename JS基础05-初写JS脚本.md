@@ -219,3 +219,108 @@ test.html 源码：
 </script>
 ```
 
+## 严格模式
+
+ECMAscript5 新增了严格运行模式。推出严格模式的目的如下：
+
+- 消除 JavaScript 语法中不合理、不严谨的用法。
+- 消除代码运行的一些安全隐患。
+- 提高编译器效率，提升程序运行速度。
+- 为未来新版本的规范化做好铺垫。
+
+### 启用严格模式
+
+在代码首部添加以下一行字符串,即可启用严格模式。
+
+```javascript
+"use strict"
+```
+
+**不支持严格模式的浏览器会把它作为字符串直接量忽略掉。**
+
+**首部就是指其前面没有任何有效的 JavaScript 代码。**例如，以下用法都不会触发严格模式。
+
+1) "use strict" 前有可执行的代码：
+
+```javascript
+var width = 10;
+'use strict';  /*无效的严格模式*/
+globalVar = 100;
+```
+
+2) "use strict" 前有空语句：
+
+```javascript
+;
+'use strict';  /*无效的严格模式*/
+globalVar = 100;
+```
+
+或者：
+
+```javascript
+;'use strict1';  /*无效的严格模式*/
+globalVar = 100;
+```
+
+注释语句不作为有效的 JavaScript 代码。例如，下面用法会触发严格模式。
+
+```javascript
+//严格模式
+'use strict';  /*有效的严格模式*/
+globalVar = 100;
+```
+
+**因此，只要前面没有会产生实际运行结果的语句，"use strict" 就可以不在第一行。**
+
+### 应用场景
+
+严格模式有两种应用场景，简单说明如下。
+
+**全局模式：将 "use strict" 放在脚本文件的第一行，则整个脚本都将以严格模式运行。如果不在第一行，则整个脚本将以正常模式运行。**
+
+下面示例在页面中添加两个 JavaScript 代码块，第一个代码块将开启严格模式，第二个代码块将按正常模式解析。
+
+```html
+<script>
+    "use strict";
+    console.log("这是严格模式。");
+</script>
+<script>
+    console.log("这是正常模式。");
+</script>
+```
+
+**局部模式：将 "use strict" 放在函数内首部，则整个函数将以严格模式运行。**
+
+下面示例定义了两个函数，其中第一个函数开启了严格模式，第二个函数按正常模式运行。
+
+```javascript
+function strict(){
+    "use strict";
+    return "这是严格模式。";
+}
+function notStrict(){
+    return "这是正常模式。";
+}
+```
+
+全局模式不利于 JavaScript 文件合并。例如，如果一个开启了严格模式的 JavaScript 库，被导入到一个正常模式的网页脚本中，由于无法确保 "use strict" 位于脚本的首部位置，容易导致严格模式失效。**因此，推荐的最佳实践是使用局部模式，将整个 JavaScript 文件脚本放在一个立即执行的匿名函数中，在匿名函数内启动严格模式。当 JavaScript 库文件被导入到不同模式的网页中，就不用担心严格模式失效了。**
+
+```javascript
+(function(){
+    "use strict";
+    // JavaScript库文件 代码
+}) ();
+```
+
+### 执行限制
+
+严格模式对 JavaScript 的语法和行为有着严格的限制。对于初学 JavaScript 语言的读者来说，应该养成好的习惯。例如，变量必须先声明后使用，否则会抛出语法错误。
+
+执行下面代码，将会提示语法错误。因此，必须先用 var 语句声明，然后再使用。
+
+```javascript
+"use strict";  //开启严格模式
+v = 1;  //报错，v未声明
+```
