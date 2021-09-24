@@ -1,4 +1,4 @@
-# 猿人学第1题
+# JS混淆源码乱码
 
 ## 简介
 
@@ -6,7 +6,7 @@
 
 第一届Web端猿人学攻防大赛【官方网站】：https://match.yuanrenxue.com/
 
-第一题题目网址：http://match.yuanrenxue.com/match/1
+题目网址：http://match.yuanrenxue.com/match/1
 
 考察重点：JS混淆源码乱码
 
