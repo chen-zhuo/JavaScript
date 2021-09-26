@@ -99,12 +99,17 @@ btoa = function (s) {
 ## 爬虫代码
 
 ```python
+#!/usr/bin/env python
+#-*- coding:utf-8 -*-
+# @Time    : 2021/9/27 1:23
+# @Author  : chenzhuo
+# @Desc    :
 import re
 import execjs
 import requests
 
 # 打开JS文件并加载JS文件
-with open("toBase64.js", 'r', encoding = 'utf-8') as f:
+with open("example12.js", 'r', encoding = 'utf-8') as f:
     content = f.read()
 JsObj = execjs.compile(content)
 
@@ -113,7 +118,7 @@ headers = {
     'accept': 'application/json, text/javascript, */*; q=0.01',
     'accept-encoding': 'gzip, deflate, br',
     'accept-language': 'zh-CN,zh;q=0.9',
-    'cookie': 'Hm_lvt_9bcbda9cbf86757998a2339a0437208e=1632468267; Hm_lvt_c99546cf032aaa5a679230de9a95c7db=1632468267; Hm_lpvt_9bcbda9cbf86757998a2339a0437208e=1632476175; Hm_lpvt_c99546cf032aaa5a679230de9a95c7db=1632476175',
+    'cookie': '注意这里的Cookie必须使用自己的，因为每个人的结果受Cookie影响而不一样',
     'referer': 'https://match.yuanrenxue.com/match/12',
     'sec-ch-ua': '"Google Chrome";v="93", " Not;A Brand";v="99", "Chromium";v="93"',
     'sec-ch-ua-mobile': '?0',
@@ -137,7 +142,8 @@ for page in range(1, 6):
     # 输出响应
     response = requests.get(url=url, headers=headers)
     print(f'第{page}页:{response.text}')
-    for v in re.findall(r'{"value": (\d+)}', response.text):
+    # 提示：会有负数存在
+    for v in re.findall(r'{"value": (-?\d+)}', response.text):
         values += int(v)
 
 # 总值
