@@ -109,7 +109,7 @@ import execjs
 import requests
 
 # 打开JS文件并加载JS文件
-with open("example12.js", 'r', encoding = 'utf-8') as f:
+with open("上面的js文件名称.js", 'r', encoding = 'utf-8') as f:
     content = f.read()
 JsObj = execjs.compile(content)
 
@@ -118,7 +118,7 @@ headers = {
     'accept': 'application/json, text/javascript, */*; q=0.01',
     'accept-encoding': 'gzip, deflate, br',
     'accept-language': 'zh-CN,zh;q=0.9',
-    'cookie': '注意这里的Cookie必须使用自己的，因为每个人的结果受Cookie影响而不一样',
+    'cookie': '温馨提示：如果您已登录，那么每个人看到的答案都是不一样的，发送请求时请传入cookie中 sessionID参数，否则返回的答案将不是您自己的数据',
     'referer': 'https://match.yuanrenxue.com/match/12',
     'sec-ch-ua': '"Google Chrome";v="93", " Not;A Brand";v="99", "Chromium";v="93"',
     'sec-ch-ua-mobile': '?0',
@@ -140,7 +140,7 @@ for page in range(1, 6):
     # 接口地址
     url = f'https://match.yuanrenxue.com/api/match/12?page={page}&m={m}'
     # 输出响应
-    response = requests.get(url=url, headers=headers)
+    response = requests.get(url=url, headers=headers, verify=False)
     print(f'第{page}页:{response.text}')
     # 提示：会有负数存在
     for v in re.findall(r'{"value": (-?\d+)}', response.text):

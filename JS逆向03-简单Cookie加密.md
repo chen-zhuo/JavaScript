@@ -29,7 +29,7 @@ sessionid参数：不同的请求，该值会发生变化。
 Hm_lvt_c99546cf032aaa5a679230de9a95c7db参数：和时间戳有关的参数。
 yuanrenxue_cookie：未知加密参数。
 Hm_lpvt_c99546cf032aaa5a679230de9a95c7db参数：和时间戳有关的参数。
-
+```
 ![QQ截图20210926160502](image/QQ截图20210926160502.png)
 
 ### 逆向分析
@@ -75,26 +75,19 @@ headers = {
     'accept': 'application/json, text/javascript, */*; q=0.01',
     'accept-encoding': 'gzip, deflate, br',
     'accept-language': 'zh-CN,zh;q=0.9',
-    'referer': 'https://match.yuanrenxue.com/match/13',
-    'sec-ch-ua': '"Google Chrome";v="93", " Not;A Brand";v="99", "Chromium";v="93"',
-    'sec-ch-ua-mobile': '?0',
-    'sec-ch-ua-platform': '"Windows"',
-    'sec-fetch-dest': 'empty',
-    'sec-fetch-mode': 'cors',
-    'sec-fetch-site': 'same-origin',
+    'cookie': 'sessionid=登录后的sessionid',
     'user-agent': 'yuanrenxue',
     'x-requested-with': 'XMLHttpRequest'
 }
 
 # 第一次请求
-first_res = requests.get('https://match.yuanrenxue.com/match/13')
-session_id = re.findall(r'(sessionid=.*?;)', str(first_res.headers))[0]
+first_res = requests.get('https://match.yuanrenxue.com/match/13', headers=headers, verify=False)
 yrx_cookie = ''
 for item in re.findall(r'\(\'(.*?)\'\)', first_res.text):
     yrx_cookie += item
 
 # 更新请求头
-headers.update({'cookie':f'{session_id};{yrx_cookie}'})
+headers.update({'cookie':f'{yrx_cookie};sessionid=登录后的sessionid'})
 
 # 数值
 values = 0
@@ -104,9 +97,9 @@ for page in range(1, 6):
     # 接口地址
     url = f'https://match.yuanrenxue.com/api/match/13?page={page}'
     # 输出响应
-    response = requests.get(url=url, headers=headers)
+    response = requests.get(url=url, headers=headers, verify=False)
     print(f'第{page}页:{response.text}')
-    for v in re.findall(r'{"value": (\d+)}', response.text):
+    for v in re.findall(r'{"value": (-?\d+)}', response.text):
         values += int(v)
 
 # 总值
