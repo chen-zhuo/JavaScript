@@ -76,7 +76,7 @@ headers = {
     'accept-encoding': 'gzip, deflate, br',
     'accept-language': 'zh-CN,zh;q=0.9',
     'cookie': 'sessionid=登录后的sessionid',
-    'user-agent': 'yuanrenxue',
+    'user-agent': 'yuanrenxue.project',
     'x-requested-with': 'XMLHttpRequest'
 }
 

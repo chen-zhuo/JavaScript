@@ -126,7 +126,7 @@ headers = {
     'sec-fetch-dest': 'empty',
     'sec-fetch-mode': 'cors',
     'sec-fetch-site': 'same-origin',
-    'user-agent': 'yuanrenxue',
+    'user-agent': 'yuanrenxue.project',
     'x-requested-with': 'XMLHttpRequest'
 }
 
