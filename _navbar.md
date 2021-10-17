@@ -1,6 +1,6 @@
+* [Home](https://chen-zhuo.github.io/)
 * [Document](https://chen-zhuo.github.io/Document/)
 * [Python](https://chen-zhuo.github.io/Python/)
 * [JavaScript](https://chen-zhuo.github.io/JavaScript/)
 * [DataBase](https://chen-zhuo.github.io/DataBase/)
 * [System](https://chen-zhuo.github.io/System/)
-* [Math](https://chen-zhuo.github.io/Math/)
