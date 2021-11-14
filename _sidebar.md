@@ -18,4 +18,5 @@
   - [JS逆向07-Window蜜罐](JS逆向07-Window蜜罐.md)
   - [JS逆向08-JS混淆源码乱码](JS逆向08-JS混淆源码乱码.md)
   - [JS逆向09-动态Cookie加密](JS逆向09-动态Cookie加密.md)
+  - [JS逆向10-JS混淆乱码增强](JS逆向10-JS混淆乱码增强.md)
   - [JS逆向20-百度翻译](JS逆向20-百度翻译.md)
