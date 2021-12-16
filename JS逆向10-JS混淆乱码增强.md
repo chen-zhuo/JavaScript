@@ -360,10 +360,10 @@ var CryptoJS = require("crypto-js");
 var btoa = require("btoa");
 
 //本题js代码
-var _0x4e96b4 = global
+var _0x4e96b4 = global  // 补环境：window = global
   , _0x4d2d2c = Array
   , _0x35bb1d = Date
-  , _0x30bc70 = String;
+  ,_0x30bc70 = String;
 
 var _0x1171c8 = 0x67452301;
 var _0x4dae05 = -0x10325477;
