@@ -14,7 +14,8 @@
 | [JS逆向07-Window蜜罐](JS逆向07-Window蜜罐.md) | 简单 | JS加密（关键词换算） | 一是通过 `函数.toString()` 将长函数拷贝；二是注意变量污染；三是注意异常处理以及逻辑运算符的影响。 |
 | [JS逆向08-JS混淆源码乱码](JS逆向08-JS混淆源码乱码.md) | 简单 | JS加密（简单混淆） | 一是简单的utf-8、unicode编码反混淆；二是debugger置为false；三是JS加密函数其他文件。 |
 | [JS逆向09-动态Cookie加密](JS逆向09-动态Cookie加密.md) | 简单 | JS加密（ob混淆）                   | 一是ob混淆和反混淆；二是 `setInterval` 定时函数里面 `timeout` 参数多少毫秒运行一次。 |
-| [JS逆向10-JS混淆乱码增强](JS逆向10-JS混淆乱码增强.md) | 中等 | JS加密（ob混淆） | 一是了解虚拟机和临时文件VM，临时文件抓不到；二是注入hook钩子函数；三是 `Call Stack` 调用堆栈；四是js代码中的 `,` 逗号不能随便改成 `;` 分号；五是js标准库引用；六是补环境 `window = global`。 |
+| [JS逆向10-JS混淆乱码增强](JS逆向10-JS混淆乱码增强.md) | 中等 | JS加密（ob混淆） | 一是了解虚拟机和临时文件VM，临时文件抓不到；二是注入hook钩子函数；三是 `Call Stack` 调用堆栈；四是js代码中的 `,` 逗号不能随便改成 `;` 分号；五是js标准库引用；六是补node环境 `window = global`。 |
+| [JS逆向1１-回溯](JS逆向10-回溯.md) | 中等 | JS编码 | 一是重点关注请求成功响应的success；二是有三种js编码，aaencode，jjencode，JSFuck；三是补V8环境`window = this;`要注释其他代码，例如`window = {};`等的干扰。 |
 
 ## JS逆向简介
 
