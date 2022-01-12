@@ -21,6 +21,7 @@
 * 技术文档
   - [Git中文手册](https://git-scm.com/book/zh/v2)
   - [Docsify官方文档](https://docsify.js.org/#/zh-cn/)
+  - [SQLAlchemy官方文档](https://www.osgeo.cn/sqlalchemy/index.html)
   - [Flask官方文档](https://dormousehole.readthedocs.io/en/latest/)
   - [Nginx中文文档](https://www.nginx.cn/doc/index.html)
   - [Docker官方文档](https://docs.docker.com/get-started/)
