@@ -22,6 +22,7 @@
   - [Git中文手册](https://git-scm.com/book/zh/v2)
   - [Docsify官方文档](https://docsify.js.org/#/zh-cn/)
   - [PyMySQL官方文档](https://pymysql.readthedocs.io/en/latest/index.html)
+  - [redis-py官方文档](https://pymysql.readthedocs.io/en/latest/index.html)
   - [SQLAlchemy官方文档](https://www.osgeo.cn/sqlalchemy/index.html)
   - [Flask官方文档](https://dormousehole.readthedocs.io/en/latest/)
   - [pyecharts官方文档](https://pyecharts.org/#/zh-cn/)
