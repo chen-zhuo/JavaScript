@@ -12,7 +12,7 @@
   - [在线编码解码](http://tool.chinaz.com/tools/unicode.aspx)
   - [在线AES/DES加密解密](https://www.fly63.com/tool/cipher/)
   - [在线ASCII表](https://www.fly63.com/tool/ascii/)
-  - [在线思维导图](http://www.mindline.cn/webapp)
+  - [在线思维导图](https://www.processon.com/diagrams)
   - [猿人学爬虫分析工具](http://tool.yuanrenxue.com/)
   - [企查查](https://www.qcc.com/)
   - [天眼查](https://www.tianyancha.com/)
