@@ -27,6 +27,7 @@
   - [Flask官方文档](https://dormousehole.readthedocs.io/en/latest/)
   - [pyecharts官方文档](https://pyecharts.org/#/zh-cn/)
   - [pyecharts使用案例](https://gallery.pyecharts.org/#/README)
+  - [kazoo官方文档](https://kazoo.readthedocs.io/en/latest/index.html)
   - [Nginx中文文档](https://www.nginx.cn/doc/index.html)
   - [Docker官方文档](https://docs.docker.com/get-started/)
   - [RabbitMQ官方文档](https://www.rabbitmq.com/documentation.html)
