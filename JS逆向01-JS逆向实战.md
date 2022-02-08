@@ -387,3 +387,64 @@ function (x) {
 箭头函数的this无法通过bind、call、apply来直接修改，但是可以通过改变作用域中的this的指向来间接修改。
 
 ![QQ截图20220207005854](image/QQ截图20220207005854.png)
+
+### 非指纹built-in函数
+
+一些常见非指纹built-in函数（必须记住）：
+
+```
+decodeURIComponent encodeURI encodeURIComponent
+Math 、round 、 random、parseInt 等强制转换
+shift、pop、push、unshift
+slice、splice、split、substring、substr、concat
+String 、 fromCharCode、 charCodeAt
+atob 、btoa、Uint8Array、 ArrayBuffer、 Int32Array、 Int16Array
+setTimeout 、setInterval、 clearTimeout
+```
+
+`unescape` 解码函数：返回解码后的字符。
+
+![QQ截图20220209001650](image/QQ截图20220209001650.png)
+
+`Function` 构造：构造返回一个函数。
+
+```javascript
+var fun = new Function("a", "return a")
+// 等价于
+function fun(a){
+    return a
+}
+```
+
+`eval` 函数：将字符串当作js代码执行。
+
+```javascript
+eval('alert(111)')
+```
+
+`Array` 函数：构造一个新的数组。
+
+![QQ截图20220209003221](image/QQ截图20220209003221.png)
+
+`Object` 函数：底层原型对象，返回一个空对象。
+
+![QQ截图20220209004045](image/QQ截图20220209004045.png)
+
+`Date` 函数：返回本地时间，而非服务器的时间。
+
+![QQ截图20220209003426](image/QQ截图20220209003426.png)
+
+`RegExp` 函数：正则相关的函数。
+
+![QQ截图20220209004513](image/QQ截图20220209004513.png)
+
+`indexOf` 函数：返回查找结果的索引值。
+
+![QQ截图20220209010636](image/QQ截图20220209010636.png)
+
+`hasOwnProperty` 函数：
+
+
+
+
+
