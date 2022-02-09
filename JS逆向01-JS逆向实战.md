@@ -392,16 +392,6 @@ function (x) {
 
 一些常见非指纹built-in函数（必须记住）：
 
-```
-decodeURIComponent encodeURI encodeURIComponent
-Math 、round 、 random、parseInt 等强制转换
-shift、pop、push、unshift
-slice、splice、split、substring、substr、concat
-String 、 fromCharCode、 charCodeAt
-atob 、btoa、Uint8Array、 ArrayBuffer、 Int32Array、 Int16Array
-setTimeout 、setInterval、 clearTimeout
-```
-
 `unescape` 解码函数：返回解码后的字符。
 
 ![QQ截图20220209001650](image/QQ截图20220209001650.png)
@@ -442,9 +432,69 @@ eval('alert(111)')
 
 ![QQ截图20220209010636](image/QQ截图20220209010636.png)
 
-`hasOwnProperty` 函数：
+`hasOwnProperty` 函数：检测属性是否是自由属性。
+
+![QQ截图20220210002606](image/QQ截图20220210002606.png)
+
+`encodeURI` 函数：编码函数。
+
+`encodeURIComponent` 函数：解码函数。
+
+![QQ截图20220210002921](image/QQ截图20220210002921.png)
+
+`Math.random()` 函数：返回0到1的随机小数。
+
+`Math.round(小数)` 函数：四舍五入将数取整。
+
+![QQ截图20220210003151](image/QQ截图20220210003151.png)
+
+`parseInt()` 函数：将一个数字字符串强行转为一个整数。
+
+![QQ截图20220210003410](image/QQ截图20220210003410.png)
+
+`数组.push(元素)` 函数：将元素从数组的末尾推入。
+
+`数组.unshift(元素)` 函数：将元素从数组的头部推入。
+
+![QQ截图20220210004550](image/QQ截图20220210004550.png)
+
+`数组.pop()` 函数：将数组末尾的元素移除。
+
+`数组.shift()` 函数：将数组头部的元素移除。
+
+![QQ截图20220210005022](image/QQ截图20220210005022.png)
+
+`数组.slice(起始下标, 结束下标)` 函数：按下标范围在数组中选取一段，原数组不发生改变，注意下标范围是前闭后开。
+
+`数组.splice(起始下标, 删除个数)` 函数：在数组中从起始下标起删除指定个数的元素，原数组变为删除后的数组。
+
+![QQ截图20220210005426](image/QQ截图20220210005426.png)
+
+`数组.concat(数组1, 数组2...)` 函数：将多个数组拼接在一起。
+
+![QQ截图20220210010748](image/QQ截图20220210010748.png)
+
+`字符串.concat(字符串1, 字符串2...)` 函数：将多个字符串拼接在一起。
+
+![QQ截图20220210011335](image/QQ截图20220210011335.png)
+
+`字符串.split(切割字符)` 函数：通过切割字符将字符串切割成多个元素数组。
+
+![QQ截图20220210011543](image/QQ截图20220210011543.png)
+
+`字符串.substr(起始下标, 数目)` 函数：在字符串中从起始下标抽取指定数目的字符。
+
+`字符串.substring(起始下标, 结束下标)` 函数：在字符串中从起始下标抽到结束下标的字符，如果没有结束下标，则一直取到末尾。
+
+![QQ截图20220210012149](image/QQ截图20220210012149.png)
+
+`String.fromCharCode(ASCII码值)` 函数：返回ASCII码值对应的字符。
+
+`字符.charCodeAt()` 函数：返回字符的ASCII码值。
+
+![QQ截图20220210013157](image/QQ截图20220210013157.png)
 
 
 
-
-
+atob 、btoa、Uint8Array、 ArrayBuffer、 Int32Array、 Int16Array
+setTimeout 、setInterval、 clearTimeout
