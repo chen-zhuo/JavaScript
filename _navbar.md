@@ -32,5 +32,6 @@
   - [Nginx中文文档](https://www.nginx.cn/doc/index.html)
   - [Docker官方文档](https://docs.docker.com/get-started/)
   - [RabbitMQ官方文档](https://www.rabbitmq.com/documentation.html)
-  - [微信小程序官方文档](https://developers.weixin.qq.com/miniprogram/dev/framework/)
   - [Vue.js官方文档](https://cn.vuejs.org/v2/guide/)
+  - [微信小程序官方文档](https://developers.weixin.qq.com/miniprogram/dev/framework/)
+  - [APlayer网页播放器](https://aplayer.js.org/#/)
