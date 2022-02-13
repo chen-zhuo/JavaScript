@@ -147,7 +147,7 @@ print(ret)
 
 ![QQ截图20210902183417](image/QQ截图20210902183417.png)
 
-## 环境基础
+## 巩固基础
 
 以下操作全部在Chrome（谷歌浏览器）中的Console执行。打开方式如下：按F12键，选择Console即可。
 
@@ -241,6 +241,10 @@ function create(...rest) {
 ![QQ截图20220203013401](image/QQ截图20220203013401.png)
 
 ?> 提示：如果不写new，那么p1就等于Person的返回值，即 `undefined` 。
+
+### 深入构造器
+
+![QQ截图20220213021226](image/QQ截图20220213021226.png)
 
 ### 自执行匿名函数
 
@@ -388,7 +392,7 @@ function (x) {
 
 ![QQ截图20220207005854](image/QQ截图20220207005854.png)
 
-### 非指纹built-in函数
+### 常用函数
 
 一些常见非指纹built-in函数（必须记住）：
 
@@ -460,7 +464,7 @@ eval('alert(111)')
 
 `数组.pop()` 函数：将数组末尾的元素移除。
 
-`数组.shift()` 函数：将数组头部的元素移除。
+`数组.shift()` 函数：将数组头部的元素移除，可删除指定值，若有多个相同的值默认删除第一个。
 
 ![QQ截图20220210005022](image/QQ截图20220210005022.png)
 
@@ -494,7 +498,228 @@ eval('alert(111)')
 
 ![QQ截图20220210013157](image/QQ截图20220210013157.png)
 
+`atob` 函数：将base64码解码成字符串格式。
+
+`btoa` 函数：将字符串编码成base64码格式。
+
+![QQ截图20220212220909](image/QQ截图20220212220909.png)
+
+`setTimeout` 函数：延迟多少秒后执行的定时器函数。
+
+`setInterval(函数名称, 秒数)` 函数：间隔多少秒一直循环执行的定时器函数。
+
+`clearTimeout` 函数：清除定时器函数。
+
+### 函数内arguments
+
+简单来说：**arguments 是一个对应于传递给函数的参数的类数组对象。**
+
+**arguments 对象是所有（非箭头）函数中都可用的局部变量。**你可以使用arguments 对象在函数中引用函数的参数。此对象包含传递给函数的每个参数，第一个参数在索引0处。例如，如果一个函数传递了三个参数，你可以以如下方式引用他们：
+
+arguments.callee：**指向当前执行的函数（在 严格模式 下，第5版 ECMAScript (ES5) 禁止使用）**
+
+argunments.length：**指向传递给当前函数的参数数量**
+
+**在严格模式下，剩余参数、默认参数和解构赋值参数的存在不会改变 arguments对象的行为，但是在非严格模式下就有所不同了。**
+
+![QQ截图20220212225707](image/QQ截图20220212225707.png)
+
+![QQ截图20220212225719](image/QQ截图20220212225719.png)
+
+### 三元表达式
+
+三元表达式格式：`boolean_expression ? true_value : false_value;`
+
+`boolean_expression`: 布尔表达式，表达式在参与三元运算中必须求得一个布尔类型的值，要么是 true，要么是 false，结果作为判断依据，判断到底去：前面的值还是后面的值。
+
+`true_value`：布尔表达式的值为真时，三元表达式的结果。
+
+`false_value`：布尔表达式的值为假时，三元表达式的结果
+
+作用：根据布尔表达式的结果，如果为真，三元表达式结果就是真值，如果为假，三元表达式结果就是假值。
+
+![QQ截图20220212221813](image/QQ截图20220212221813.png)
+
+```
+解释第二个例子：
+1.定义a等于10
+2.判断a是否大于10，不大于，则执行a > 1 ? 2 : 3
+3.判断a是否大于1，大于，则执行2
+4.输出2
+```
+
+?> 提示：若遇到特别长的三元表达式且在没有括号的情况下，就从左至右一个 `?` 一个 `:` 的看。
+
+### 位运算符
+
+位运算符有 7 个，分为两类：
+
+逻辑位运算符：**位与（&）、位或（|）、位异或（^）、非位（~）**
+
+移位运算符：**左移（<<）、右移（>>）、无符号右移（>>>）**
+
+![QQ截图20220212222937](image/QQ截图20220212222937.png)
+
+![QQ截图20220212222859](image/QQ截图20220212222859.png)
+
+逻辑运算符（没有“位”）：**与（&&）、或（||）、非（!）**
+
+![QQ截图20220212223418](image/QQ截图20220212223418.png)
+
+若不是比较判断数值，则记住公式约定：真与真，出右真；真或真，出左真；真与假，则出假；真或假，则出真。
+
+![QQ截图20220212223625](image/QQ截图20220212223625.png)
+
+### 简单JSFuck
+
+JSFuck代码：**就是将正常的js代码转换成的只有 `!、[]、+` 的字符串编码进行加密。**
+
+```
+![] = false（布尔false）
+!+[] = true（布尔true）
+!+[]+[] = 'true'（布尔true变为字符串'true'）
+!+[]+!+[] = 2（true用作运算时等于1）
+[!+[]+!+[]] = [2]（变成一个数组里只有2）
+[!+[]+!+[]]+[!+[]+!+[]] = '22'（两个数组[2]相加等于字符串22）
+!+[]+[][!+[]+!+[]] = 'u'（取字符串'true'下标为2的字符）
+(![]+[])[+!+[]]+(![]+[])[!+[]+!+[]]+(!![]+[])[!+[]+!+[]+!+[]]+(!![]+[])[+!+[]]+(!![]+[])[+[]]+([][(![]+[])[+[]]+(![]+[])[!+[]+!+[]]+(![]+[])[+!+[]]+(!![]+[])[+[]]]+[])[+!+[]+[!+[]+!+[]+!+[]]]+[+!+[]]+([+[]]+![]+[][(![]+[])[+[]]+(![]+[])[!+[]+!+[]]+(![]+[])[+!+[]]+(!![]+[])[+[]]])[!+[]+!+[]+[+[]]] = 'alert(1)'
+```
+
+### 伪代码
+
+1. 自执行函数嵌套执行 `function(a, b){}(fn1,fn2)`，这里a,b是形参，fn1,fn2为实参来执行该函数。
+2. 混淆的变量名（不可逆）：_0x319289  _$SW  Oo0o00o0 a b c；
+3. 函数名与不一致原因（1.构造函数、2. 重新赋值）；
+4. 三元表达式嵌套；
+5. 控制流平坦化，例如能一行代码解决，写成多行代码让爬虫工程师来跟踪调试；
+6. 打包；
+7. 魔改加密包，比方魔改 `btoa` 函数；
+8. 重构解释器（很少），对js内置的方法进行了一些重构；
+
+剩下的想到了再说 =.=。肯定还有很多，只能以后再总结进去了。
+
+## 调试干扰
+
+### 无限debugger
+
+无限debugger，还有一个非常靓丽的名字，叫debugger地狱。
+
+无限debugger：**调试过程中一直点击跳转下一个debugger时候，永远的跳转到下一个debugger那去，但是无限debugger不可能无限，否则浏览器会卡死。简单说，就是很频繁的去执行debugger逻辑，而不是真正的死循环。**
+
+**实现debugger的方案：Function，关键字，eval制作虚拟机。**
+
+【不可混淆】
+
+```javascript
+debugger; 
+```
+
+【可混淆】
+
+```javascript
+eval("debugger;")
+```
+
+【可重度混淆】
+
+```
+Function("debugger").call()/apply()或赋值bind()
+XXX.constructor("debugger").call("action")
+Function.constructor("debugger").call("action")
+(function() {return !![];}["constructor"]("debugger")["call"]("action"))
+```
+
+实现无限debugger的方案： 任何可以循环的代码都可以！
+
+```
+debugger逻辑放入函数中{
+    setInterval
+    循环的 setTimeout
+}
+【函数中可能包含业务逻辑和代码】
+```
+
+例如，使用 `setInterval` 来实现一个每0.5秒触发的无限debugger：
+
+```html
+<script>
+    function a(){
+        debugger;
+    }
+    setInterval(a, 500);
+</script>
+```
+
+处理debugger方案：
+
+1. **干掉debugger贯穿全局，干掉定时器等全局事件（置空或重写）。**
+
+例如，使用 `setInterval` 实现无限debugger，可以让改函数调用前重写该函数并生效。
+
+```javascript
+setInterval_back = setInterval
+// 只要定时器里面的参数不包含了'debugger'就执行
+setInterval = function(a, b){
+    if(a.toString().indexOf('debugger') == -1){
+        return setInterval_back(a, b)
+    }
+}
+```
+
+如果业务代码里面是不重要的代码，我们也可以直接置它：
+
+```javascript
+setInterval = function(){}
+```
+
+2. **无限debugger在加密逻辑之前。这就证明，想要调试到函数入口，必须越过这个无限debugger，针对静态文件/伪动态文件（大部分都是这个情况）。**
+
+方案一：用fiddler中Autoresponse删掉debugger（建议）
+
+方案二：遇到debugger，可以在对应行的左侧右键点击选择 `Nerver pause here` 选择无视它。
+
+![QQ截图20220128024537](image/QQ截图20220128024537.png)
+
+方案三：在debugger这里打断点。
+
+![QQ截图20210926174943](image/QQ截图20210926174943.png)
+
+在蓝色断点位置，点击鼠标右键，选择Edit breakpoint：
+
+![QQ截图20210926175109](image/QQ截图20210926175109.png)
+
+输入属性false：
+
+![QQ截图20210926175250](image/QQ截图20210926175250.png)
+
+蓝色断点变黄：
+
+![QQ截图20210926175305](image/QQ截图20210926175305.png)
+
+方案四：针对真动态文件或Autoresponse失效或删掉debugger逻辑很繁琐的情况下。
+
+```
+1.如果是Function原理的debugger，可以重写函数构造器
+2.如果是eval型的构造器，可以重构eval函数
+3.如果是定时器，并且2失效了，可以重构定时器
+4.在以上方式都失效时，向上找堆栈，在进入无限debugger之前打上断点将触发无限debugger的函数置空（最麻烦，但是适用性最广）
+```
+
+重写函数构造器：
+
+```javascript
+Function.prototype.constructor_bc = Function.prototype.constructor
+Function.prototype.constructor = function(){
+    if(arguments[0] === "debugger"){}
+    else{
+        return Function.prototype.constructor_bc.apply(this, arguments)
+    }
+}
+```
+
+3. **无限debugger在加密逻辑之后。不用管，直接在script第一行断点打上，从头开始。**
 
 
-atob 、btoa、Uint8Array、 ArrayBuffer、 Int32Array、 Int16Array
-setTimeout 、setInterval、 clearTimeout
+
+
+
