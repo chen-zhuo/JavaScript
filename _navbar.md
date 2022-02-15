@@ -24,6 +24,7 @@
   - [PyMySQL官方文档](https://pymysql.readthedocs.io/en/latest/index.html)
   - [redis-py官方文档](https://redis-py.readthedocs.io/en/latest/index.html)
   - [SQLAlchemy官方文档](https://www.osgeo.cn/sqlalchemy/index.html)
+  - [openpyxl官方文档](https://openpyxl.readthedocs.io/en/stable/index.html)
   - [Flask官方文档](https://dormousehole.readthedocs.io/en/latest/)
   - [Aiohttp官方文档](https://docs.aiohttp.org/en/stable/)
   - [pyecharts官方文档](https://pyecharts.org/#/zh-cn/)
