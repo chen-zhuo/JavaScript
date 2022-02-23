@@ -273,4 +273,3 @@ for page in range(1, 6):
 # 总值
 print(int(values))
 ```
-

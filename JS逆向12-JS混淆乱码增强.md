@@ -63,33 +63,7 @@ f: 和时间戳有关
 
 ![QQ截图20211110154246](image/QQ截图20211110154246.png)
 
-通过对比请求，发现cookie参数改变发生在 `loginInfor` 请求和 `/api/match/5` 请求之间，然而中并没有能导致cookie改变的请求或其他的js文件，那么还剩下一种可能性就是：**虚拟机产生了临时的js文件改变了cookie，然而这种临时文件是抓包工具抓不到的。**到这里可能就要讲解一下相关概念了：
-
-**JavaScript 是一种解释型语言，在执行 JavaScript 代码过程中会生成字节码。字节码不能直接被运行，而是运行在 JavaScript 引擎之上，一般也把 JavaScript 引擎称为虚拟机（Virtual Machine，简称VM）。**
-
-<img src="image/解释型.png" alt="解释型" style="zoom:80%;" />
-
-**虚拟机可以理解成软件、代码的运行环境模拟器，其中又分为“系统虚拟机”和“进程虚拟机”。“系统虚拟机”提供了一个可以运行操作系统的真完整仿平台。**Mac 用户很熟悉的 Parallels 就是一个允许你在 Mac 上运行 Windows系统虚拟机。**“进程虚拟机”不具备全部的功能，(只)能运行一个程序或者进程。**Wine 是一个允许你在 Linux 机器上运行 Windows 应用的进程虚拟机，但是并不在 Linux 中提供完整的 Windows 操作系统。**JavaScript 虚拟机是一种进程虚拟机，专门设计来解释和执行的 JavaScript 代码**。下面是目前现代浏览器采用的常见JavaScript虚拟机：
-
-- Chakra(Microsoft Internet Explorer)
-- Nitro/JavaScript Core (Safari)
-- Carakan (Opera)
-- SpiderMonkey (Firefox)
-- V8 (Chrome, Chromium)  
-
-理解了虚拟机，接下来讲解“临时js文件”。**临时js文件名称通常以 `VM` 开头后面跟数字**，在Chrome调试中经常可以看到VM+数字的JS文件：
-
-![1295666045-5c2c2ce5d5e51_fix732](image/1295666045-5c2c2ce5d5e51_fix732.jpg)
-
-临时的js文件生成方式有两种：在**控制台里执行代码**生成临时文件、在**代码中执行了eval方法**生成临时文件。
-
-<img src="image/2110448486-5c2c2e90a4137_fix732.png" alt="2110448486-5c2c2e90a4137_fix732" style="zoom:100%;" />
-
-<img src="image/1814990609-5c2c2ea26841d_fix732.png" alt="1814990609-5c2c2ea26841d_fix732" style="zoom:100%;" />
-
-除此之外，**使用Chrome产生的临时js文件其背景为黄色**：
-
-![20190731101931442](image/20190731101931442.png)
+通过对比请求，发现cookie参数改变发生在 `loginInfor` 请求和 `/api/match/5` 请求之间，然而中并没有能导致cookie改变的请求或其他的js文件，那么还剩下一种可能性就是：**虚拟机产生了临时的js文件改变了cookie，然而这种临时文件是抓包工具抓不到的。**到这里可能要回看《JS02-逆向基础》中关于虚拟机、临时文件相关概念了。
 
 理解了临时js文件产生机制，结合上面分析流程，说明在肯定在js代码中执行了eval方法。现在我们回到js文件当中，在所有执行eval方法的地方打上断点，断点过来后，我们点击执行下一步的操作按钮：
 
