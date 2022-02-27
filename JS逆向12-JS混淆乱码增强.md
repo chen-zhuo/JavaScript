@@ -85,62 +85,15 @@ f: 和时间戳有关
 
 ![QQ截图20211114005522](image/QQ截图20211114005522.png)
 
-?> 因此从现在开始，逆向代码的调试尽量在浏览器中进行，因为浏览器中已经加载好环境、函数、变量，是最好的调试场所。
+?> 提示：因此从现在开始，逆向代码的调试尽量在浏览器中进行，因为浏览器中已经加载好环境、函数、变量，是最好的调试场所。
 
 将VM文件点击格式化 `{}` 后，得到如下进3千行的代码：
 
 ![QQ截图20211114010459](image/QQ截图20211114010459.png)
 
-**根据前面的学习经验，可以看出该代码先经过了一次ob混淆，再经过了一次utf-8编码。如果我们硬着头皮去找cookie的两个加密参数肯定不好找，因此我们这里就要学习一种新的方法：hook钩子函数**
-
-1. hook钩子函数当中hook就是”钩、钩子“的意思，其实就是一小段代码。
-2. hook钩子函数作用就是代码运行的过程当中，当钩子函数被触发时，就停在该处。类似打断点一样，**只不过打断点的位置是确定的，而hook钩子函数的断点位置是不确定的。**
-3. hook钩子函数本质就是代码注入，在文件代码开始运行时（可以在第一行代码打上断点）将其断住，就将hook代码注入进去，继续运行代码等待hook被触发。
-4. 注入的hook代码仅当前当次页面有效使用，如果页面被刷新了，需要重新注入hook代码。
+**根据前面的学习经验，可以看出该代码先经过了一次ob混淆，再经过了一次utf-8编码。如果我们硬着头皮去找cookie的两个加密参数肯定不好找，因此我们这里就要使用Hook技术（回看《逆向基础》章节中“Hook技术”）**
 
 ```javascript
-//常用JS的HOOK代码
-
-// hook eval方法
-window.__cr_eval = window.eval; // 保存原始方法
-var myeval = function(src){ // 重写eval方法
-    console.log(src);
-    console.log("=============== eval end ===============");
-    debugger;
-    return window.__cr_eval(src);
-}
-var _myeval = myeval.bind(null);
-_myeval.toString = window.__cr_eval.toString;
-Object.defineProperty(window, 'eval', {value: _myeval});
-
-// hook Function函数
-window.__cr_fun = window.Function;
-var myfun = function(){
-    var args = Array.prototype.slice.call(arguments, 0, -1).join(","), src = arguments[arguments.length - 1]
-    console.log(src);
-    console.log("=============== Function end ===============");
-    debugger;
-    return window.__cr_fun.apply(this, arguments);
-}
-myfun.toString = function(){return window.__cr_fun + ""} 
-Object.defineProperty(window, 'Function', {value: myfun});
-
-// hook JSON.stringify
-var my_stringify = JSON.stringify;
-JSON.stringify = function(params){
-    console.log("hook", params);
-    debugger;
-    return my_stringify(params);
-};
-
-// hook JSON.parse
-var my_parse = JSON.parse;
-JSON.parse = function(params){
-    console.log("hook", params);
-    debugger;
-    return my_parse(params);
-};
-
 // hook cookie字段RM4hZBv0dDon443M
 (function () {
    Object.defineProperty(document, 'cookie', {
@@ -153,51 +106,13 @@ JSON.parse = function(params){
        }
    })
 })();
-
-// hook window对象
-var window_flag_1 = 'object1'; // 修改为需要hook的对象
-var window_flag_2 = 'object2'; // hook对象的对象
-
-var key_value_map = {};
-var window_value = window[window_flag_1];
-
-Object.defineProperty(window, window_flag_1, {
-    get: function(){
-        console.log('Getting', window, window_flag_1, '=', window_value);
-        debugger;
-        return window_value;
-    },
-    set: function(val){
-        console.log('Setting', window, window_flag_1, '=', val);
-        debugger;
-        window_value = val;
-        key_value_map[window[window_flag_1]] = window_flag_1;
-        set_obj_attr(window[window_flag_1], window_flag_2);
-    },
-});
-
-function set_obj_attr(obj, attr){
-    var obj_arrt_value = obj[attr];
-    Object.defineProperty(obj, attr, {
-        get:function(){
-            console.log('Getting', key_value_map[obj], attr, '=', obj_arrt_value);
-            debugger;
-            return obj_arrt_value
-        },
-        set: function(val){
-            console.log('Setting', key_value_map[obj], attr, '=', val);
-            debugger;
-            obj_arrt_value = val;
-        },
-    });
-};
 ```
 
 现在我们在VM文件第一行处打上断点，当断点过来过后，由于cookie加密参数 `RM4hZBv0dDon443M` 相比于加密参数 `m` 更好定位，因此我们在console中注入以下hook代码：
 
 ![QQ截图20211114015531](image/QQ截图20211114015531.png)
 
-?> 方法 `indexOf` 检索指定字符串的值若没有出现，则该方法返回-1。
+?> 提示：方法 `indexOf` 检索指定字符串的值若没有出现，则该方法返回-1。
 
 继续运行该代码，马上hook就被触发了，**只不过当前cookie中 `RM4hZBv0dDon443M` 字段还未被定义，其方法 `indexOf` 返回值等于0，所以触发了hook，没关系点击右侧按钮继续运行**：
 
