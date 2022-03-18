@@ -74,7 +74,7 @@ function uc(num){
         return encrypted.toString();
         };
 
-    // 这里将window.num替换为num
+    // 这里将window.num替换为num来传递页码
     window.s = window.a(window.t + '|' + num);
     window.a = window.s;
 
